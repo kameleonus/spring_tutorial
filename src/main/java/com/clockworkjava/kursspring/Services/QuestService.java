@@ -4,6 +4,7 @@ import com.clockworkjava.kursspring.domain.Quest;
 import com.clockworkjava.kursspring.domain.repos.KnightRepo;
 import com.clockworkjava.kursspring.domain.repos.QuestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class QuestService {
     public void assignRandomQuest(String knightName){
         List<Quest> allQuests = questRepo.getAll();
        Quest randomQuest = allQuests.get(rand.nextInt(allQuests.size()));
-       knightRepo.getKnight(knightName).setQuest(randomQuest);
+        knightRepo.getKnight(knightName).setQuest(randomQuest);
        questRepo.removeQuest(randomQuest);
     }
 
