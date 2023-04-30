@@ -43,7 +43,6 @@ public class QuestRepo {
         description.add("Odbij zamek");
         description.add("Upoluj hydrę");
         String desc = description.get(random.nextInt(description.size()));
-        System.out.println("Utworzono: "+ desc);
         createQuest(desc);
 
     }

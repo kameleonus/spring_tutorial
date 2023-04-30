@@ -1,6 +1,6 @@
 package com.clockworkjava.kursspring;
 
-import com.clockworkjava.kursspring.domain.Castle;
+
 import com.clockworkjava.kursspring.domain.Knight;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class KursspringApplicationTests {
 	@Autowired
 	Knight knight;
-	@Autowired
-	Castle castle;
+
 	@Test
 	void contextLoads() {
 	}

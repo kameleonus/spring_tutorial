@@ -4,15 +4,20 @@ import com.clockworkjava.kursspring.domain.Knight;
 
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface KnightRepo {
     void createKnight(String name, int age);
 
     Collection<Knight> getAllKnights();
 
-    Knight getKnight(String name);
+    Optional<Knight> getKnight(String name);
 
-    void removeKnight(String name);
+    void removeKnight(Integer id);
 
     void build();
+
+
+    void createKnight(Knight knight);
+    Knight getKnightById(Integer id);
 }

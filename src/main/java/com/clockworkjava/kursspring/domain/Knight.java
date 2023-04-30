@@ -8,18 +8,43 @@ public class Knight {
 
     private Quest quest;
 
+    private int id;
+    private int level;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Knight() {
-        this.name = "Lancelot";
-        this.age = 29;
+        level=1;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public Knight(String name, int age) {
         this.name = name;
         this.age = age;
+        level = 1;
 
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setAge(int age) {
         this.age = age;

@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 //Reopzytorium knightów
 
@@ -14,24 +15,29 @@ public class InMemoryKnightRepo implements KnightRepo {
 
 
 
-    Map<String, Knight> knights= new HashMap<>();
-
+    Map<Integer, Knight> knights= new HashMap<>();
 
     @Override
     public void createKnight(String name, int age){
-        knights.put(name,new Knight(name,age));
+        Knight newknight = new Knight(name,age);
+        newknight.setId(getNewId());
+        knights.put(newknight.getId(), newknight);
     }
+
+
     @Override
     public Collection<Knight> getAllKnights(){
         return knights.values();
     }
     @Override
-    public Knight getKnight(String name){
-        return knights.get(name);
+    public Optional<Knight> getKnight(String name){
+        Optional<Knight> byName = knights.values().stream().filter(knight -> knight.getName().equals(name)).findAny();
+
+        return byName;
     }
     @Override
-    public void removeKnight(String name){
-       knights.remove(name);
+    public void removeKnight(Integer id){
+       knights.remove(id);
     }
    public InMemoryKnightRepo(){}
 
@@ -43,10 +49,27 @@ public class InMemoryKnightRepo implements KnightRepo {
     }
 
     @Override
+    public void createKnight(Knight knight) {
+        knight.setId(getNewId());
+        knights.put(knight.getId(),knight);
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return knights.get(id);
+    }
+
+    @Override
     public String toString() {
         return "InMemoryKnightRepo{" +
                 "knights=" + knights +
                 '}';
     }
-
+    public int getNewId() {
+        if (knights.isEmpty()) {
+            return 0;
+        } else {
+          return knights.size()+1;
+        }
+    }
 }

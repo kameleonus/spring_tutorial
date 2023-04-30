@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Getting Started: Spring web service</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery/5.2.3/js/bootstrap.min,js}"></script>
+</head>
+<body>
+<table class="table">
+    <thead><td>Imię rycerza</td> <td>Level</td><td></td></thead>
+    <tbody th:each="knight: ${knights}">
+        <tr>
+            <td th:text="${knight.name}"></td>
+            <td th:text="${knight.level}"></td>
+            <td><a th:href="${'/knight?id='+knight.id}">Podgląd</a></td>
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+    <a href="/newknight">Utwórz nowego rycerza</a>
+</div>
+</body>
+</html>

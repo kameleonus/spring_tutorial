@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Getting Started: Spring web service</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery/5.2.3/js/bootstrap.min,js}"></script>
+</head>
+<body>
+<div>
+    <p th:text="${knight.name}"></p>
+    <p th:text="${knight.age}"></p>
+    <p th:text="${knight.level}"></p>
+</div>
+</body>
+</html>

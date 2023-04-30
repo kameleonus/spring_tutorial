@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 public class DBKnightRepo implements KnightRepo{
@@ -19,12 +20,12 @@ public class DBKnightRepo implements KnightRepo{
         return null;
     }
     @Override
-    public Knight getKnight(String name){
+    public Optional<Knight> getKnight(String name){
         System.out.println("Baza danych");
         return null;
     }
     @Override
-    public void removeKnight(String name){
+    public void removeKnight(Integer id){
         System.out.println("Baza danych");
     }
 
@@ -34,6 +35,15 @@ public class DBKnightRepo implements KnightRepo{
 
     }
 
+    @Override
+    public void createKnight(Knight knight) {
+
+    }
+
+    @Override
+    public Knight getKnightById(Integer id) {
+        return null;
+    }
 
 
 }
