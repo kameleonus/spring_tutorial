@@ -1,9 +1,19 @@
 package com.clockworkjava.kursspring.domain;
 
+
+
+import org.hibernate.validator.constraints.Range;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class Knight {
-
+    @NotNull
+    @Min(2)
+    @Max(40)
     private String name;
-
+    @NotNull
+    @Range(min=18,max=60, message = "Wiek między 18 a 60")
     private int age;
 
     private Quest quest;
@@ -36,6 +46,10 @@ public class Knight {
         this.age = age;
         level = 1;
 
+    }
+
+    public Quest getQuest() {
+        return quest;
     }
 
     public String getName() {

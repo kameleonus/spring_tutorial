@@ -2,12 +2,10 @@ package com.clockworkjava.kursspring.domain.repos;
 
 
 import com.clockworkjava.kursspring.domain.Knight;
+import com.clockworkjava.kursspring.utils.Ids;
 import jakarta.annotation.PostConstruct;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 //Reopzytorium knightów
 
@@ -20,7 +18,7 @@ public class InMemoryKnightRepo implements KnightRepo {
     @Override
     public void createKnight(String name, int age){
         Knight newknight = new Knight(name,age);
-        newknight.setId(getNewId());
+        newknight.setId(Ids.getNewId(knights.keySet()));
         knights.put(newknight.getId(), newknight);
     }
 
@@ -37,7 +35,8 @@ public class InMemoryKnightRepo implements KnightRepo {
     }
     @Override
     public void removeKnight(Integer id){
-       knights.remove(id);
+
+        knights.remove(id);
     }
    public InMemoryKnightRepo(){}
 
@@ -46,11 +45,12 @@ public class InMemoryKnightRepo implements KnightRepo {
     public void build(){
         createKnight("Lancelot",29);
         createKnight("Percival",25);
+
     }
 
     @Override
     public void createKnight(Knight knight) {
-        knight.setId(getNewId());
+        knight.setId(Ids.getNewId(knights.keySet()));
         knights.put(knight.getId(),knight);
     }
 
@@ -65,11 +65,5 @@ public class InMemoryKnightRepo implements KnightRepo {
                 "knights=" + knights +
                 '}';
     }
-    public int getNewId() {
-        if (knights.isEmpty()) {
-            return 0;
-        } else {
-          return knights.size()+1;
-        }
-    }
+
 }

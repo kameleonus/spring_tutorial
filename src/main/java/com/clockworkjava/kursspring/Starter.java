@@ -28,6 +28,7 @@ public class Starter implements CommandLineRunner {
 
         questRepo.createRandomQuest();
         questRepo.createRandomQuest();
+        questService.assignRandomQuest("Lancelot");
 
    }
 

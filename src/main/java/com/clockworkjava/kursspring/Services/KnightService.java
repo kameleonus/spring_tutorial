@@ -23,4 +23,8 @@ public class KnightService {
     public Knight getKnight(Integer id) {
         return  repo.getKnightById(id);
     }
+
+    public void deleteKnight(Integer id) {
+        repo.removeKnight(id);
+    }
 }
