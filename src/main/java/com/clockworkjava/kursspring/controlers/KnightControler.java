@@ -44,7 +44,6 @@ public class KnightControler {
     public String getKnight(@RequestParam("id") Integer id,Model model){
         Knight knight = knightService.getKnight(id);
         model.addAttribute("knight",knight);
-        model.addAttribute("timeComponent",timeComponent);
         model.addAttribute("playerInfo",playerInfo);
         return "knight";
     }

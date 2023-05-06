@@ -44,6 +44,9 @@ public class DBKnightRepo implements KnightRepo{
     public Knight getKnightById(Integer id) {
         return null;
     }
-
+    @Override
+    public void upadateKnight(int id, Knight knight){
+        System.out.println("bywa");
+    }
 
 }

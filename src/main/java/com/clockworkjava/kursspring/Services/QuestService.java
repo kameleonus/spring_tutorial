@@ -4,18 +4,18 @@ import com.clockworkjava.kursspring.domain.Quest;
 import com.clockworkjava.kursspring.domain.repos.KnightRepo;
 import com.clockworkjava.kursspring.domain.repos.QuestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestService {
     final static Random rand= new Random();
     @Autowired
     KnightRepo knightRepo;
-    @Autowired
+
     QuestRepo questRepo;
     public void assignRandomQuest(String knightName){
         List<Quest> allQuests = questRepo.getAll();
@@ -24,4 +24,19 @@ public class QuestService {
        questRepo.removeQuest(randomQuest);
     }
 
+    public List<Quest> getAllNotStartedQuests() {
+
+        return questRepo.getAll().stream().filter(quest -> !quest.isStarted()).collect(Collectors.toList());
+
+    }
+    @Autowired
+    public void setQuestRepo(QuestRepo questRepo){
+        this.questRepo=questRepo;
+    }
+    public void update(Quest quest){
+        questRepo.update(quest);
+    }
+    public boolean isQuestCompleted(Quest quest){
+        return quest.isFinished();
+    }
 }

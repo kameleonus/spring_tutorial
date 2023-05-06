@@ -65,5 +65,9 @@ public class InMemoryKnightRepo implements KnightRepo {
                 "knights=" + knights +
                 '}';
     }
+    @Override
+    public void upadateKnight(int id, Knight knight){
+        knights.put(id,knight);
+    }
 
 }

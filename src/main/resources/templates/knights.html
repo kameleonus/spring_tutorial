@@ -10,16 +10,21 @@
 </head>
 <body>
 
-Aktualny czas <span th:text="${timeComponent.time}"/>
 Posiadane złoto <span th:text="${playerInfo.gold}"/>
+<a href="/checkQuests">Aktualizuj zadania</a>
 <table class="table">
-    <thead><td>Imię rycerza</td> <td>Level</td><td>Zadanie</td></thead>
+    <thead>
+    <td>Imię rycerza</td>
+    <td>Level</td>
+    <td>Zadanie</td>
+    </thead>
     <tbody th:each="knight: ${knights}">
         <tr>
             <td th:text="${knight.name}"></td>
             <td th:text="${knight.level}"></td>
             <td>
-                <span th:if="${knight.quest==null}" th:text="'Brak aktualnego zadania'"/>
+                <span th:if="${knight.quest==null}">Brak aktualnego zadania
+                <a th:href="${'/assignQuest?knightId='+knight.id}">Przypisz zadanie</a></span>
                 <span th:if="${knight.quest!=null}" th:text="${knight.quest.desc}"/>
             </td>
             <td><a th:href="${'/knight?id='+knight.id}">Podgląd</a></td>
