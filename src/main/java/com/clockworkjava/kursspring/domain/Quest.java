@@ -1,9 +1,14 @@
 package com.clockworkjava.kursspring.domain;
 
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Quest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String desc;
 
@@ -13,6 +18,7 @@ public class Quest {
     private boolean finished=false;
 
     protected LocalDateTime startTime;
+    public Quest(){}
     public int getId() {
         return id;
     }
@@ -68,7 +74,9 @@ public class Quest {
         this.id=id;
         this.desc=desc;
     }
-
+    public Quest(String desc){
+        this.desc=desc;
+    }
     public String getDesc() {
         return desc;
     }

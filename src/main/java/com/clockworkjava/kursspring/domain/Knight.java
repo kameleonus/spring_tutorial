@@ -1,12 +1,10 @@
 package com.clockworkjava.kursspring.domain;
 
-
-
-
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
 import jakarta.validation.constraints.NotNull;
-
+@Entity
 public class Knight {
     @NotNull
     @Size(min=2 ,max =40)
@@ -15,8 +13,10 @@ public class Knight {
     @Range(min=18,max=60, message = "Wiek między 18 a 60")
     private int age;
 
+    @OneToOne(cascade = CascadeType.ALL)
     private Quest quest;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int level;
 

@@ -1,52 +1,62 @@
 package com.clockworkjava.kursspring.domain.repos;
 
 import com.clockworkjava.kursspring.domain.Knight;
-import jakarta.annotation.PostConstruct;
-
-
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 import java.util.Collection;
 import java.util.Optional;
 
 
 public class DBKnightRepo implements KnightRepo{
+
+    @PersistenceContext
+    private EntityManager entityManager;
     @Override
+    @Transactional
     public void createKnight(String name, int age){
-        System.out.println("Baza danych");
+        Knight knight = new Knight(name,age);
+        entityManager.persist(knight);
     }
     @Override
     public Collection<Knight> getAllKnights() {
-        System.out.println("Baza danych");
-        return null;
+      return   entityManager.createQuery("from Knight", Knight.class).getResultList();
     }
     @Override
     public Optional<Knight> getKnight(String name){
-        System.out.println("Baza danych");
-        return null;
+        Knight knightByName = entityManager.createQuery("from Knight k where k.name=:name", Knight.class)
+                .setParameter("name", name).getSingleResult();
+        return Optional.ofNullable(knightByName);
     }
     @Override
+    @Transactional
     public void removeKnight(Integer id){
-        System.out.println("Baza danych");
+
+        entityManager.createQuery("delete from Knight where id=:id").setParameter("id", id).executeUpdate();;
     }
 
     @Override
-    @PostConstruct
     public void build(){
 
     }
 
     @Override
+    @Transactional
     public void createKnight(Knight knight) {
-
+        entityManager.persist(knight);
     }
 
     @Override
     public Knight getKnightById(Integer id) {
-        return null;
+
+        return entityManager.find(Knight.class,id);
     }
     @Override
+    @Transactional
     public void upadateKnight(int id, Knight knight){
-        System.out.println("bywa");
+
+        entityManager.merge(knight);
     }
 
 }

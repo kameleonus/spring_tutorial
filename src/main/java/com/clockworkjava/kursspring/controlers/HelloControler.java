@@ -5,8 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloControler {
-    @RequestMapping("/hello")
+    @RequestMapping("/login")
     public String hello(){
-        return "hello";
+        return "redirect:/knights";
+    }
+    @RequestMapping("/")
+    public String back(){
+        return "redirect:/knights";
     }
 }

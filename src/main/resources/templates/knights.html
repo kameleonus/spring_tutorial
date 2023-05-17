@@ -36,5 +36,10 @@ Posiadane złoto <span th:text="${playerInfo.gold}"/>
 <div class="row">
     <a href="/newknight">Utwórz nowego rycerza</a>
 </div>
+<div class="row">
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="Wyloguj"/>
+    </form>
+</div>
 </body>
 </html>
